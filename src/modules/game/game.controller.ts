@@ -1,6 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
 import { GameService } from './game.service';
-import { IGame } from './interfaces/game.interface';
 
 @Controller('games')
 export class GameController {
@@ -10,7 +9,7 @@ export class GameController {
   ) {}
 
   @Get('/')
-  async getGameInfo(): Promise<IGame[]> {
+  async getGameInfo() {
     try {
       return await this.gameService.getGames();
     } catch (e) {
