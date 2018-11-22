@@ -13,11 +13,11 @@ Your tech stack will be Nest.js which is wrapper around Node.js + Express taking
 
 ## Your task
 You will work with API `https://www.cheapshark.com/api/`. Lucky for you somebody just started on this project, so continue, where he left. Fork this repo and:
-- Expand app logic to fetch the cheapest price ever for game (spoiler alert - you need to call `https://www.cheapshark.com/api/documentation.html#deals`)
-- Return just data in `IGame` interface to endpoint GET `/games`
-- Save time (DATETIME) to DB of your choice every time endpoint GET `/games` is called
-- Make endpoint GET `/calls` and return only calls made on Mondays
-- Endpoint GET `/calls` has to be private, make it so, it's up to you what method will you choose
+- Expand app logic to fetch the cheapest price ever for game (spoiler alert - you need to call `https://www.cheapshark.com/api/documentation.html#deals`).
+- Return just data in `IGame` interface to endpoint GET `/games`.
+- When endpoint GET `/games` is called, you have to save this event to database (of your choice). You will save just when endpoint was called. In the end you will have in table two columns `id` and `called_at` of type DATETIME.
+- Make endpoint GET `/calls` and return data from database you created. Return only calls made on Mondays.
+- Endpoint GET `/calls` has to be private, make it so, it's up to you what method will you choose.
 - Tests are up to you, if you will provide them, you will get in front of other candidates.
 
 ## Installation and run
