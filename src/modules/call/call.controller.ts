@@ -1,17 +1,11 @@
-import { Controller, Get, Post, Body, Param, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { Validator } from 'class-validator';
-import { CreateCallDto } from './dto/create-call.dto';
 import { CallService } from './call.service';
 import { Call as CallInterface } from './interfaces/call.interface';
 
 @Controller('calls')
 export class CallsController {
   constructor(private readonly callService: CallService) {
-  }
-
-  @Post()
-  async create(@Body() createCallDto: CreateCallDto) {
-    this.callService.create(createCallDto);
   }
 
   @Get()

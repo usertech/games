@@ -11,8 +11,7 @@ export class GameService {
   }
 
   /**
-   * Returns list of games
-   * @TODO save all called at
+   * Returns list of games sorted by lowest price
    */
   public async getGames(): Promise<IGame[]> {
     const gamesList = await this.fetchGameInfo();
