@@ -18,7 +18,8 @@ export class GameService {
     const createCallDto = new CreateCallDto();
     createCallDto.calledAt = new Date();
     this.callService.create(createCallDto);
-    return gamesList.data;
+    /* I didn't find how to return data by IGame*/
+    return gamesList.data[1];
   }
 
   private async fetchGameInfo(): Promise<AxiosResponse> {

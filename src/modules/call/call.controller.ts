@@ -13,6 +13,7 @@ export class CallsController {
     return this.callService.findAll();
   }
 
+  /* TODO another idea to make methods private - to use Guard*/
   @Get(':day')
   async findByDay(@Param('day') day: string) {
     const validator = new Validator();
