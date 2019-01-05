@@ -19,10 +19,10 @@ export class GameService {
     return gamesList.data;
   }
 
-  private async fetchGameInfo(serchName: string): Promise<AxiosResponse> {
+  private async fetchGameInfo(searchName: string): Promise<AxiosResponse> {
     const res = await Axios.get(
       `${this.origin}/deals?storeID=1&desc=0&title=${encodeURIComponent(
-        serchName,
+        searchName,
       )}&pageSize=20`,
     );
     if (res.status === 200) {
