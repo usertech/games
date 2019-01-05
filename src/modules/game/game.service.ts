@@ -14,16 +14,16 @@ export class GameService {
   /**
    * Returns list of games
    */
-  public async getGames(): Promise<ICheapSharkResponse[]> {
-    const gamesList = await this.fetchGameInfo();
+  public async getGames(searchName: string): Promise<ICheapSharkResponse[]> {
+    const gamesList = await this.fetchGameInfo(searchName);
     return gamesList.data;
   }
 
-  private async fetchGameInfo(): Promise<AxiosResponse> {
+  private async fetchGameInfo(serchName: string): Promise<AxiosResponse> {
     const res = await Axios.get(
-      `${
-        this.origin
-      }/deals?storeID=1&desc=0&title=grand%20theft%20auto&pageSize=20`,
+      `${this.origin}/deals?storeID=1&desc=0&title=${encodeURIComponent(
+        serchName,
+      )}&pageSize=20`,
     );
     if (res.status === 200) {
       return res;
