@@ -25,6 +25,7 @@ export class ConfigService {
         .default('development'),
       GAMES_API_ORIGIN: Joi.string().uri(),
       PORT: Joi.number().default(3000),
+      AUTH_TOKEN: Joi.string().required(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
@@ -43,5 +44,9 @@ export class ConfigService {
 
   get gamesApiOrigin(): string {
     return String(this.envConfig.GAMES_API_ORIGIN);
+  }
+
+  get authToken(): string {
+    return String(this.envConfig.AUTH_TOKEN);
   }
 }
