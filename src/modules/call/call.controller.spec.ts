@@ -4,7 +4,7 @@ import { CallService } from './Call.service';
 import { ConfigService } from '../config/config.service';
 import { Call } from './entities/call.entity';
 import { Repository } from 'typeorm';
-import { getRepositoryToken } from '../../../node_modules/@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('Call Controller', () => {
   let module: TestingModule;

@@ -1,0 +1,28 @@
+# docker-compose.yml
+version: '3.1'
+services:
+  app:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
+      - '5432:5432'
+    volumes:
+      - .:/home/app/
+      - ./node_modules:/home/app/node_modules
+    environment:
+      NODE_ENV: development
+      POSTGRES_HOST: postgres
+  postgres:
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: usertech_games
+  adminer:
+    image: adminer:4.7.0-standalone
+    restart: always
+    ports:
+      - 8080:8080

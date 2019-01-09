@@ -1,5 +1,5 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
-import { Request } from '../../../node_modules/@types/express';
+import { Request } from 'express';
 import { ConfigService } from '../config/config.service';
 
 @Injectable()

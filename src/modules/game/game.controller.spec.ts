@@ -3,7 +3,7 @@ import { GameController } from './game.controller';
 import { GameService } from './game.service';
 import { ConfigService } from '../config/config.service';
 import { CallService } from '../call/call.service';
-import { getRepositoryToken } from '../../../node_modules/@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Call } from '../call/entities/call.entity';
 
 describe('Game Controller', () => {

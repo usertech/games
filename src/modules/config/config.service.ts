@@ -11,7 +11,7 @@ export class ConfigService {
 
   constructor(filePath: string) {
     const config = dotenv.parse(fs.readFileSync(filePath));
-    this.envConfig = this.validateInput(config);
+    this.envConfig = this.validateInput(Object.assign({}, process.env, config));
   }
 
   /**
@@ -25,12 +25,17 @@ export class ConfigService {
         .default('development'),
       GAMES_API_ORIGIN: Joi.string().uri(),
       PORT: Joi.number().default(3000),
-      AUTH_TOKEN: Joi.string().required(),
+      AUTH_TOKEN: Joi.string(),
+      POSTGRES_USERNAME: Joi.string(),
+      POSTGRES_PASSWORD: Joi.string(),
+      POSTGRES_DATABASE: Joi.string(),
+      POSTGRES_HOST: Joi.string(),
     });
 
     const { error, value: validatedEnvConfig } = Joi.validate(
       envConfig,
       envVarsSchema,
+      { stripUnknown: true },
     );
     if (error) {
       throw new Error(`Config validation error: ${error.message}`);
@@ -48,5 +53,21 @@ export class ConfigService {
 
   get authToken(): string {
     return String(this.envConfig.AUTH_TOKEN);
+  }
+
+  get postgresUsername(): string {
+    return String(this.envConfig.POSTGRES_USERNAME);
+  }
+
+  get postgresPassword(): string {
+    return String(this.envConfig.POSTGRES_PASSWORD);
+  }
+
+  get postgresDatabase(): string {
+    return String(this.envConfig.POSTGRES_DATABASE);
+  }
+
+  get postgresHost(): string {
+    return this.envConfig.POSTGRES_HOST ? this.envConfig.POSTGRES_HOST : null;
   }
 }
