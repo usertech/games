@@ -9,19 +9,21 @@ import { Repository } from '../node_modules/typeorm';
 import * as nock from 'nock';
 import { ICheapSharkDealResponse } from '../src/modules/game/interfaces/cheapSharkDealResponse';
 import { ICheapSharkDealsResponse } from '../src/modules/game/interfaces/cheapSharkDealsResponse.interface';
+import { ConfigModule } from '../src/modules/config/config.module';
+import { NestFactory } from '../node_modules/@nestjs/core';
 
 describe('AppModule (e2e)', () => {
   let app: INestApplication;
-  let config: ConfigService;
   let callRepository: Repository<Call>;
+  let config: ConfigService;
 
   beforeAll(async () => {
+    const configModule = await NestFactory.create(ConfigModule);
+    const configService = configModule.get<ConfigService>(ConfigService);
+
     const moduleFixture = await Test.createTestingModule({
-      imports: [AppModule],
-    })
-      .overrideProvider(getRepositoryToken(Call))
-      .useValue({ find: () => [], create: () => {}, save: () => {} })
-      .compile();
+      imports: [AppModule.forRoot(configService)],
+    }).compile();
 
     config = moduleFixture.get<ConfigService>(ConfigService);
     callRepository = moduleFixture.get<Repository<Call>>(
@@ -29,6 +31,8 @@ describe('AppModule (e2e)', () => {
     );
     app = moduleFixture.createNestApplication();
     await app.init();
+
+    // intercept the API requests and pass our own responses
 
     const dealsResponse: ICheapSharkDealsResponse[] = [
       {
@@ -107,10 +111,8 @@ describe('AppModule (e2e)', () => {
   });
 
   it('/calls (GET) (403)', async () => {
-    const findSpy = jest.spyOn(callRepository, 'find');
     const response = await request(app.getHttpServer()).get('/calls');
     expect(response.status).toBe(403);
-    expect(findSpy).toBeCalledTimes(0);
   });
 
   it('/calls (GET) (200)', async () => {

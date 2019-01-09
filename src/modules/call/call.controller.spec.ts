@@ -9,7 +9,6 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 describe('Call Controller', () => {
   let module: TestingModule;
   let controller: CallController;
-  let callRepository: Repository<Call>;
 
   beforeAll(async () => {
     module = await Test.createTestingModule({

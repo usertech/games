@@ -13,15 +13,11 @@ services:
     environment:
       NODE_ENV: development
       POSTGRES_HOST: postgres
+    command: npm run test:e2e
   postgres:
     image: postgres:10-alpine
     restart: always
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: usertech_games
-  adminer:
-    image: adminer:4.7.0-standalone
-    restart: always
-    ports:
-      - 8080:8080
+      POSTGRES_DB: __test__usertech_games_

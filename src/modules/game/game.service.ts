@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import Axios, { AxiosResponse } from 'axios';
+import Axios from 'axios';
 import { ICheapSharkDealsResponse } from './interfaces/cheapSharkDealsResponse.interface';
 import { ConfigService } from '../config/config.service';
 import { IGame } from './interfaces/game.interface';
