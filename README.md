@@ -39,3 +39,9 @@ Run the app with postgres and adminer at `localhost:8080` (use `postgres` for se
 ```bash
 $ docker-compose up --build
 ```
+
+e2e testing
+
+```bash
+$ docker-compose -f docker-compose.e2e.yml up --build
+```
