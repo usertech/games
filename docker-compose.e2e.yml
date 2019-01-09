@@ -11,7 +11,7 @@ services:
       - .:/home/app/
       - ./node_modules:/home/app/node_modules
     environment:
-      NODE_ENV: development
+      NODE_ENV: TEST
       POSTGRES_HOST: postgres
     command: npm run test:e2e
   postgres:
@@ -20,4 +20,4 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: __test__usertech_games_
+      POSTGRES_DB: __test__usertech_games
