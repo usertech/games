@@ -45,7 +45,7 @@ describe('Game Controller', () => {
     const getGamesSpy = jest
       .spyOn(gameService, 'getGames')
       .mockImplementation(() => {});
-    const response = await controller.getGameInfo();
+    await controller.getGameInfo();
     expect(logCallSpy).toBeCalled();
     expect(getGamesSpy).toBeCalled();
   });

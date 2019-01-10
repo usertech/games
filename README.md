@@ -32,16 +32,29 @@ $ npm install
 $ npm start
 ```
 
-### Using Docker
+### Using docker-compose
 
-Run the app with postgres and adminer at `localhost:8080` (use `postgres` for server name when logging in).
+Run the app with postgres with adminer accessible at `localhost:8080` (use `postgres` for server name when logging in).
 
 ```bash
 $ docker-compose up --build
 ```
 
-e2e testing
+## Tests
+
+### Unit
 
 ```bash
-$ docker-compose -f docker-compose.e2e.yml up --build
+$ npm test
 ```
+
+### e2e (using docker-compose)
+
+```bash
+$ docker-compose -f docker-compose.yml -f docker-compose.e2e.yml up --build
+```
+
+### Authorization
+
+`GET /calls` endpoint is authorized. Use `Authorization: Bearer {token}` header to
+access it. Find the token in `development.env`
