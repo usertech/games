@@ -3,12 +3,12 @@ import { CallController } from './Call.controller';
 import { CallService } from './Call.service';
 import { ConfigService } from '../config/config.service';
 import { Call } from './entities/call.entity';
-import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('Call Controller', () => {
   let module: TestingModule;
   let controller: CallController;
+  let callService: CallService;
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
@@ -26,10 +26,18 @@ describe('Call Controller', () => {
       ],
     }).compile();
     controller = module.get<CallController>(CallController);
-    callRepository = module.get<Repository<Call>>(getRepositoryToken(Call));
+    callService = module.get<CallService>(CallService);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  it('should call getCallsOnMonday only', () => {
+    const getCallsOnMondaySpy = jest
+      .spyOn(callService, 'getCallsOnMondays')
+      .mockImplementation(() => []);
+    controller.getCallInfo();
+    expect(getCallsOnMondaySpy).toBeCalled();
   });
 });

@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { ICheapSharkDealsResponse } from './interfaces/cheapSharkDealsResponse.interface';
 import { ConfigService } from '../config/config.service';
 import { IGame } from './interfaces/game.interface';
-import { ICheapSharkDealResponse } from './interfaces/cheapSharkDealResponse';
+import { ICheapSharkDealResponse } from './interfaces/cheapSharkDealResponse.interface';
 
 enum stores {
   STEAM = 1,

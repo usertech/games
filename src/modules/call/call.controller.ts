@@ -10,7 +10,7 @@ export class CallController {
   @Get('/')
   async getCallInfo() {
     try {
-      return await this.callService.getCalls();
+      return await this.callService.getCallsOnMondays();
     } catch (e) {
       throw Error(e);
     }

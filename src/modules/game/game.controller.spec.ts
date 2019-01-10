@@ -8,6 +8,10 @@ import { Call } from '../call/entities/call.entity';
 
 describe('Game Controller', () => {
   let module: TestingModule;
+  let gameService: GameService;
+  let callService: CallService;
+  let controller: GameController;
+
   beforeAll(async () => {
     module = await Test.createTestingModule({
       controllers: [GameController],
@@ -24,11 +28,25 @@ describe('Game Controller', () => {
         },
       ],
     }).compile();
+
+    gameService = module.get<GameService>(GameService);
+    callService = module.get<CallService>(CallService);
+    controller = module.get<GameController>(GameController);
   });
+
   it('should be defined', () => {
-    const controller: GameController = module.get<GameController>(
-      GameController,
-    );
     expect(controller).toBeDefined();
+  });
+
+  it('Should call game service and log the call', async () => {
+    const logCallSpy = jest
+      .spyOn(callService, 'log')
+      .mockImplementation(() => {});
+    const getGamesSpy = jest
+      .spyOn(gameService, 'getGames')
+      .mockImplementation(() => {});
+    const response = await controller.getGameInfo();
+    expect(logCallSpy).toBeCalled();
+    expect(getGamesSpy).toBeCalled();
   });
 });

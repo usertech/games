@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CallService } from './call.service';
 import { CallController } from './call.controller';
 import { ConfigModule } from '../config/config.module';
-import { TypeOrmModule } from '../../../node_modules/@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { Call } from './entities/call.entity';
 
 @Module({

@@ -1,23 +1,4 @@
 version: '3.1'
 services:
   app:
-    build: .
-    depends_on:
-      - postgres
-    ports:
-      - '3000:3000'
-      - '5432:5432'
-    volumes:
-      - .:/home/app/
-      - ./node_modules:/home/app/node_modules
-    environment:
-      NODE_ENV: TEST
-      POSTGRES_HOST: postgres
     command: npm run test:e2e
-  postgres:
-    image: postgres:10-alpine
-    restart: always
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: __test__usertech_games
